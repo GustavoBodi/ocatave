@@ -95,19 +95,22 @@ endfunction
 
 # Aplicacao falsa posicao
 function raiz = metodo_falsa_posicao(P, a, b)
-  tol = 1e-6; iter_max = 5000;
+  tol = 1e-6;
+  iter_max = 5000;
   fa = computar_func(P,a);
   fb = computar_func(P,b);
   for i = 1:iter_max
     c = (a*fb - b*fa)/(fb - fa);
     fc = computar_func(P,c);
-    if abs(fc) < tol, break; end
+    if abs(fc) < tol
+      break;
+    endif
     if fa*fc < 0
       b = c; fb = fc;
     else
       a = c; fa = fc;
-    end
-  end
+    endif
+  endfor
   raiz = c;
 endfunction
 
